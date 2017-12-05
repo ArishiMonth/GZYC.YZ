@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AutoFaceService>
+  <ServerModel>
+   
+    <param ServiceName="GZYC.YZ.Business.Logger" ServiceType="GZYC.YZ.IBusiness.ILogger" />  
+  </ServerModel>
+  <RepositoryModel>
+    <param RepositoryName="GZYC.YZ.DataAccess.LoggerDB" RepositoryType="GZYC.YZ.IDataAccess.ILoggerDB" />
+  </RepositoryModel>
+</AutoFaceService>

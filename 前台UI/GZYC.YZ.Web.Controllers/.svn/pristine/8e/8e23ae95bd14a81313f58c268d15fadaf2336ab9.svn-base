@@ -1,0 +1,291 @@
+﻿/*----------------------------------------------------------------
+           // Copyright (C) 2017贵州大循环电子商务有限公司
+           // 版权所有。 
+           //
+           // 文件名：ProductIssueController.cs
+           // 文件功能描述：商品管理控制器
+           //
+           // 
+           // 创建标识：胡倩20170608
+           //
+           // 修改标识：
+           // 修改描述：
+           //
+           // 修改标识：
+           // 修改描述：
+//----------------------------------------------------------------*/
+using GuiZhouDxh.ShoppingMall.Business.BLL;
+using GuiZhouDxh.ShoppingMall.Business.BLL.Common;
+using GuiZhouDxh.ShoppingMall.Common.Enum;
+using GuiZhouDxh.ShoppingMall.Common.Log;
+using GuiZhouDxh.ShoppingMall.Common.Model;
+using GuiZhouDxh.ShoppingMall.Models.Enums;
+using GuiZhouDxh.ShoppingMall.Models.ShoppingMall;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Web;
+using System.Web.Mvc;
+
+namespace GuiZhouDxh.ShoppingMall.Web.Controllers
+{
+    public class ProductIssueController : BaseController
+    {
+
+        #region 商品编辑、发布页面相关操作
+        /// <summary>
+        /// 编辑商品首页
+        /// </summary>
+        /// <param name="sellerUserId">用户id</param>
+        /// <param name="sellerName">用户名称</param>
+        /// <param name="productId">产品id</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult M_ProductInfo(long sellerUserId = 0, string sellerName = "",long productId=0)
+        {
+            Session["sellerUserId"] = sellerUserId;
+            Session["productId"] = productId;
+            //productId=0为发布状态
+            ViewData["isAdd"] = productId == 0 ? true : false;
+           var product = M_ProductInfo_BLL.GetModelInfoByProductId(productId, sellerUserId, sellerName).Data;
+            if (product == null)
+            {
+                Session["sellerUserId"] = null;
+                Session["productId"] = null;
+                return Content("<script>alert('参数错误')</script>");
+            }
+            else
+            {
+                ViewData["SetModelNum"] = product.M_ProductStockPrice.Count;
+                ViewData["SetTypeNum"] = product.F_ProductTypeBind.Count;
+                return View(product);
+            }
+        }
+
+        /// <summary>
+        /// 商品上架或下架
+        /// </summary>
+        /// <param name="productId">商品id</param>
+        /// <param name="productStatus">状态：0:提交，2:下架</param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult ChangeProductSaleStatus(long productId, ProductState productStatus)
+        {
+            CommonResp resp = M_ProductInfo_BLL.ChangeProductSaleStatus(productId, productStatus);
+            return Json(resp);
+        }
+
+        /// <summary>
+        /// 最后保存
+        /// </summary>
+        /// <param name="model">商品基础信息</param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult SaveProductInfo(M_ProductInfo model)
+        {
+            long productId = model.ProductId;
+            List < M_ProductStockPrice > stockPriceLst = (List<M_ProductStockPrice>)Session[model.SellerUserId + model.ProductId + "Model"];
+            M_SubmitTypeBind typeBindData = (M_SubmitTypeBind)Session[model.SellerUserId + model.ProductId + "Type"];
+            CommonResp resp= M_ProductInfo_BLL.UpdateProductInfo(model, stockPriceLst, typeBindData);
+            //若为发布成功则清空缓存并跳到上一页（目前无上一页，暂时本页面刷新）
+            if (resp.ResultCode == CommonResultCode.Success && productId == 0)
+            {
+                ClearSession();
+            }
+
+            //返回结果
+            return Json(resp);
+        }
+        /// <summary>
+        /// 清理缓存（删除成功后、发布成功后、离开商品编辑页面）
+        /// </summary>
+        private void ClearSession()
+        {
+            long sellerUserId = Session["sellerUserId"] == null ? 0 : (long)Session["sellerUserId"];
+            long productId = Session["productId"] == null ? 0 : (long)Session["productId"];
+            if (sellerUserId != 0)
+            {
+                Session[sellerUserId + productId+ "Model"] = null;            //清理商品规格
+                Session[sellerUserId + productId+ "Type"] = null;            //清理商品分类关联
+                Session["sellerUserId"] = null;                             //清理用户id
+                Session["productId"] = null;                               //清理商品id
+            }
+        }
+
+        /// <summary>
+        /// 商品信息数据缓存
+        /// </summary>
+        /// <param name="model">商品信息</param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult ProductToEdit(M_ProductInfo model)
+        {
+            CommonResp resp = new CommonResp();
+            try
+            {
+                Session[model.SellerUserId + "productInfo"] = model;
+                resp.ResultCode = CommonResultCode.Success;
+            }
+            catch(Exception ex)
+            {
+                resp.ResultCode = CommonResultCode.ServerErr;
+                resp.ResultMsg = "系统服务异常";
+                resp.Data = null;
+                LogHelper.WriteError("(商品信息缓存 Session ):" + ex);  //记录日志
+            }
+            return Json(resp);
+        }
+
+        #endregion
+
+        #region 类目选择页面
+        /// <summary>
+        /// 类目选择页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Category()
+        {
+            long sellerUserId = Session["sellerUserId"] == null ? 0 : (long)Session["sellerUserId"];
+            long productId = Session["productId"] == null ? 0 : (long)Session["productId"];
+            M_SubmitTypeBind type = (M_SubmitTypeBind)Session[sellerUserId + productId+ "Type"];
+            if (type == null)
+            {
+                type = M_ProductTypeBind_BLL.GetProductTypeTrees(productId).Data;
+            }
+            return View(type);
+        }
+
+        /// <summary>
+        /// 类目搜索
+        /// </summary>
+        /// <param name="keyValue"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult CategorySearch(string keyValue)
+        {
+            CommonResp typeTree = M_ProductTypeBind_BLL.GetTypesTree( keyValue);
+            return Json(typeTree);
+        }
+
+        /// <summary>
+        /// 关联类目缓存
+        /// </summary>
+        /// <param name="relationCategory">所关联的类目信息</param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult SaveProductTypeBind(M_SubmitTypeBind relationType)
+        {
+            CommonResp resp = new CommonResp();
+            long sellerUserId = Session["sellerUserId"] == null ? 0 : (long)Session["sellerUserId"];
+            long productId = Session["productId"] == null ? 0 : (long)Session["productId"];
+            try
+            {
+                Session[sellerUserId + productId+ "Type"] = relationType;
+                resp.ResultCode = CommonResultCode.Success;
+            }
+            catch (Exception ex)
+            {
+                resp.ResultCode = CommonResultCode.ServerErr;
+                resp.ResultMsg = "系统服务异常";
+                resp.Data = null;
+                LogHelper.WriteError("(商品信息缓存 Session ):" + ex);  //记录日志
+            }
+            return Json(resp);
+        }
+
+        #endregion
+
+        #region 商品详情页
+        /// <summary>
+        /// 商品详情编辑页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ProductEditor()
+        {
+            return View();
+        }
+        #endregion
+
+        #region 商品规格编辑
+        /// <summary>
+        /// 商品规格编辑
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ProductModel()
+        {
+            long sellerUserId = Session["sellerUserId"] == null ? 0 : (long)Session["sellerUserId"];
+            long productId = Session["productId"] == null ? 0 : (long)Session["productId"];
+            //查是否有缓存，无则查数据库
+            var model = (List<M_ProductStockPrice>)Session[sellerUserId + productId+ "Model"];
+            if (model != null)
+            {
+                return View(model);
+            }
+         
+            //根据商品id获取商品规格信息
+            var resp = M_ProductStockPrice_BLL.GetModelInfoesByProductId(productId);
+            if(resp.Data!=null && resp.Data.Count > 0)
+            {
+                model = resp.Data;
+            }else
+            {
+                model = new List<M_ProductStockPrice>();
+                model.Add(new M_ProductStockPrice { ProductId = productId });
+            }
+            return View(model);
+        }
+
+        /// <summary>
+        /// 商品规格信息缓存
+        /// </summary>
+        /// <param name="data">商品规格信息</param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult ProductModel(List<M_ProductStockPrice> data)
+        {
+            CommonResp resp = new CommonResp();
+            string errorMsg = string.Empty;
+            long sellerUserId = Session["sellerUserId"] == null ? 0 : (long)Session["sellerUserId"];
+            long productId = Session["productId"] == null ? 0 : (long)Session["productId"];
+            if (M_ProductInfo_BLL.ValidateProductStockPrice(productId, data, out errorMsg))
+            {
+                //缓存用做最后保存
+                Session[sellerUserId + productId+ "Model"] = data;
+                resp.ResultCode = CommonResultCode.Success;
+                return Json(resp);
+            }
+            resp.ResultCode = CommonResultCode.ParameteErr;
+            resp.ResultMsg = errorMsg;
+            return Json(resp);
+        }
+        #endregion
+
+        #region 单个图片上传
+        /// <summary>
+        /// 图片保存入口
+        /// </summary>
+        /// <param name="imgOne">图片64位字符串</param>
+        /// <param name="fileName">文件名字</param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult UpLoadPhoto(string imgOne,string fileName)
+        {
+            CommonResp resp = new CommonResp();
+            long sellerUserId = Session["sellerUserId"]==null?0: (long)Session["sellerUserId"];
+            string url= ImageHelper.UploadImg(sellerUserId, imgOne, fileName, "SMProductImg");
+            if (url.StartsWith("ok"))
+            {
+                resp.Data = url.Substring(3, url.Length - 3);
+                resp.ResultCode = CommonResultCode.Success;
+            }else
+            {
+                resp.ResultCode = CommonResultCode.Fail;
+                resp.ResultMsg = url;
+            }
+            return Json(resp);
+        }
+        #endregion
+    }
+}

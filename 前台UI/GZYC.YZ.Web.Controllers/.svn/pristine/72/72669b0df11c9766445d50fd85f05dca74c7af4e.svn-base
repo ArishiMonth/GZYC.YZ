@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+
+namespace GuiZhouDxh.ShoppingMall.Web.Controllers
+{
+    public class BaseController : Controller
+    {
+        /// <summary>
+        /// 错误处理
+        /// </summary>
+        /// <param name="filterContext"></param>
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            if (filterContext == null)
+            {
+                throw new ArgumentNullException("filterContext");
+            }
+            if (!filterContext.ExceptionHandled)
+            {
+                //数据库记录错误日志
+                //Sys_apperrorlogInfo errorInfo = AddDBErrorLog(filterContext);
+
+                //文本日志
+                //LogHelper.WriteError(typeof(BaseController), filterContext.Exception);
+
+                //filterContext.Result = View("~/Home/Error.cshtml", errorInfo);
+                //filterContext.ExceptionHandled = true;
+            }
+
+
+            base.OnException(filterContext);
+        }
+
+    }
+}

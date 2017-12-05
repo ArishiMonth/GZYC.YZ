@@ -1,0 +1,1163 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GuiZhouDxh.ShoppingMall.Models</name>
+    </assembly>
+    <members>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.Enums.OrderDetailState">
+            <summary>
+            订单商品状态
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderDetailState.Normal">
+            <summary>
+            0 正常 / 放弃退货
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderDetailState.ApplyReturn">
+            <summary>
+            1申请退货
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderDetailState.RefuseReturn">
+            <summary>
+            2拒绝退货
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderDetailState.Returning">
+            <summary>
+            3同意退货，退货中
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderDetailState.Arbitration">
+            <summary>
+            4申请仲裁中
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderDetailState.FinishReturn">
+            <summary>
+            5退货完成，订单完成时退钱
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderDetailState.CannotReturn">
+            <summary>
+            6仲裁不能退货
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.Enums.OrderState">
+            <summary>
+            订单状态: 0提交订单未支付, 1订单已支付， 2已发货， 3已签收， 4退单申请， 5确认退单，6拒绝退单，7撤销退单，8仲裁中，9已结算, 10订单已取消或过期未支付
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderState.Submit">
+            <summary>
+            0提交订单未支付
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderState.Pay">
+            <summary>
+            1订单已支付
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderState.Express">
+            <summary>
+            2已发货
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderState.Receiving">
+            <summary>
+            3已签收，确认收货，待结算
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderState.OrderRefund">
+            <summary>
+            4退单申请
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderState.AffirmRefund">
+            <summary>
+            5确认退单
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderState.RefuseRefund">
+            <summary>
+            6拒绝退单
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderState.RepealRefund">
+            <summary>
+            7撤销退单
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderState.Arbitration">
+            <summary>
+            8仲裁中
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderState.FinishOrder">
+            <summary>
+            9已结算
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.OrderState.CancelOrder">
+            <summary>
+            10订单已取消或过期未支付
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.Enums.ProductState">
+            <summary>
+            产品状态枚举: 0提交 1审核后发布 2下架 3冻结并下架
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.ProductState.Submit">
+            <summary>
+            0提交
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.ProductState.Release">
+            <summary>
+            1审核后发布
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.ProductState.Downline">
+            <summary>
+            2下架
+            </summary>
+        </member>
+        <member name="F:GuiZhouDxh.ShoppingMall.Models.Enums.ProductState.FrozenDownline">
+            <summary>
+            3冻结并下架
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_PayIntercessor">
+            <summary>
+            SM_O_PayIntercessor
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_PayIntercessor.OrderId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_PayIntercessor.BuyerUserId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_PayIntercessor.SellerUserId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_PayIntercessor.Amount">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_PayIntercessor.RefundAmount">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_PayIntercessor.OrderTime">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_PayIntercessor.PayTime">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_PayIntercessor.OrderCompleteTime">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_PayIntercessor.SettlementTime">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_PayIntercessor.State">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_PayIntercessor.Remark">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_PayIntercessor.PayTag">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_PayIntercessor.PayType">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_Refund">
+            <summary>
+            SM_O_Refund
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_Refund.OrderDetailId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_Refund.OrderId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_Refund.RefundAmount">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.SM_O_Refund.RefundTime">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.GroupServer.U_Users">
+            <summary>
+            U_Users
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.U_Users.UserId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.U_Users.UserTypeID">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.U_Users.MemberTypeID">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.U_Users.Account">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.U_Users.Cellphone">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.U_Users.Password">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.U_Users.SecurityPwd">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.U_Users.RegisteredTime">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.U_Users.AccountStatusId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.U_Users.LastLoginTime">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.GroupServer.U_Users.Reference">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.F_ProductTypeBind">
+            <summary>
+            F_ProductTypeBind
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.F_ProductTypeBind.ProductTypeBindId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.F_ProductTypeBind.ProductId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.F_ProductTypeBind.FirstTypeId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.F_ProductTypeBind.SecondTypeId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.F_ProductTypeBind.ThirdTypeId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.F_ProductTypeBind.FirstTypeName">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.F_ProductTypeBind.SecondTypeName">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.F_ProductTypeBind.ThirdTypeName">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.I_ExpressType">
+            <summary>
+            发货物流/快递公司类型信息表
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.I_ExpressType.ExpressId">
+            <summary> 
+            物流/快递公司ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.I_ExpressType.ExpressName">
+            <summary> 
+            物流快递公司名称
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.I_ParametersSet">
+            <summary>
+            基础、零散的参数设置
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.I_ParametersSet.ParamId">
+            <summary> 
+            参数ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.I_ParametersSet.ParamValue">
+            <summary> 
+            参数值
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.I_ParametersSet.ParamType">
+            <summary> 
+            参数类型
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.I_ParametersSet.Remark">
+            <summary> 
+            备注
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.I_ParametersSet.Updater">
+            <summary> 
+            最后修改人ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.I_ParametersSet.UpdateTime">
+            <summary> 
+            修改时间
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.I_ParametersSet.State">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.I_ProductType">
+            <summary>
+            I_ProductType
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.I_ProductType.TypeId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.I_ProductType.Name">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.I_ProductType.ImageName">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.I_ProductType.ParentId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.I_ProductType.orderNum">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductInfo">
+            <summary>
+            商品详情表
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductInfo.ProductId">
+            <summary> 
+            产品ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductInfo.ProductName">
+            <summary> 
+            产品名称
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductInfo.SellerUserId">
+            <summary> 
+            商家会员ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductInfo.SellerName">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductInfo.Intro">
+            <summary> 
+            简介
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductInfo.ImgUrl">
+            <summary> 
+            图片URL
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductInfo.SellCount">
+            <summary> 
+            已销售数量
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductInfo.Price">
+            <summary> 
+            单价
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductInfo.LinkOut">
+            <summary> 
+            详情外链
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductInfo.State">
+            <summary> 
+            产品状态: 0提交 1审核后发布 2下架 3冻结并下架
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductInfo.IfInvoice">
+            <summary> 
+            是否提供发票 0否 1是
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductInfo.ContentHtml">
+            <summary> 
+            内容详情HTML
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductInfo.InputTime">
+            <summary> 
+            录入时间
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductInfo.Checker">
+            <summary> 
+            审核人ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductInfo.CheckTime">
+            <summary> 
+            审核时间
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductStockPrice">
+            <summary>
+            M_ProductStockPrice
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductStockPrice.StockPriceId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductStockPrice.ProductId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductStockPrice.Size">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductStockPrice.Color">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductStockPrice.Stock">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductStockPrice.Price">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductStockPrice.OldPrice">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductTypeBind">
+            <summary>
+            兑换商品所属类别
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductTypeBind.ProductTypeBindId">
+            <summary> 
+            绑定ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductTypeBind.ProductId">
+            <summary> 
+            兑换商品ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductTypeBind.FirstTypeId">
+            <summary> 
+            一级类别Id
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductTypeBind.SecondTypeId">
+            <summary> 
+            二级类别Id
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ProductTypeBind.ThirdTypeId">
+            <summary> 
+            三级类别Id
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ShoppingCart">
+            <summary>
+            购物车
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ShoppingCart.BuyerUserId">
+            <summary> 
+            消费会员ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ShoppingCart.StockPriceId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ShoppingCart.ProductId">
+            <summary> 
+            产品ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ShoppingCart.Size">
+            <summary> 
+            规格、套餐
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ShoppingCart.Color">
+            <summary> 
+            颜色
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ShoppingCart.BuyCount">
+            <summary> 
+            数量
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_ShoppingCart.InputTime">
+            <summary> 
+            加入日期
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_SubmitTypeBind.Tree">
+            <summary>
+            树型结构字符串
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_SubmitTypeBind.TypeIds">
+            <summary>
+            关联的分类id，逗号间隔
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_SubmitTypeBind.ProductId">
+            <summary>
+            商品id
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_TradeComment">
+            <summary>
+            商品评价表
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_TradeComment.CommentId">
+            <summary> 
+            评价编号
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_TradeComment.ProductId">
+            <summary> 
+            产品ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_TradeComment.SellerUserId">
+            <summary> 
+            商家会员ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_TradeComment.BuyerUserId">
+            <summary> 
+            消费会员ID,评价人ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_TradeComment.CommentValue">
+            <summary> 
+            分值
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_TradeComment.CommentContent">
+            <summary> 
+            评价内容
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_TradeComment.CommentTime">
+            <summary> 
+            评价时间
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_TradeComment.OrderId">
+            <summary> 
+            订单编号
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_TradeComment.CommentImgs">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.M_TradeComment.OrderDetailId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderDetail">
+            <summary>
+            订单详情
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderDetail.OrderDetailId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderDetail.OrderId">
+            <summary> 
+            订单编号
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderDetail.ProductId">
+            <summary> 
+            产品ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderDetail.Size">
+            <summary> 
+            规格、套餐
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderDetail.Color">
+            <summary> 
+            颜色
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderDetail.ProductName">
+            <summary> 
+            产品名称
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderDetail.Price">
+            <summary> 
+            单价
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderDetail.BuyCount">
+            <summary> 
+            数量
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderDetail.Total">
+            <summary> 
+            总额
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderDetail.State">
+            <summary> 
+            商品状态 0正常，1申请退货退款，2拒绝退款，3同意退货退款，4未收到退货，5确认退款
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderDetail.ImgUrl">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo">
+            <summary>
+            订单表
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.OrderId">
+            <summary> 
+            订单编号
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.SellerUserId">
+            <summary> 
+            商家会员ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.BuyerUserId">
+            <summary> 
+            消费会员ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.OrderTime">
+            <summary> 
+            订单日期
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.OrderTotal">
+            <summary> 
+            订单总金额
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.PayTotal">
+            <summary> 
+            实收总金额
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.ShippingAddress">
+            <summary> 
+            收货地址
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.ShippingName">
+            <summary> 
+            收货人
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.TelephoneNumber">
+            <summary> 
+            收货人电话
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.ExpressId">
+            <summary> 
+            快递公司
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.InvoiceTitle">
+            <summary> 
+            发票抬头
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.InvoiceType">
+            <summary> 
+            发票类型 0不要发票, 1普通发票, 2增值税发票
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.InvoiceContent">
+            <summary> 
+            发票内容
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.OrderState">
+            <summary> 
+            订单状态: 0提交订单，1订单处理中， 2已发货， 3已签收， 4退单申请， 5确认退单，6已结算
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.OrderStateTime">
+            <summary> 
+            状态变更时间
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.Remark">
+            <summary> 
+            备注
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.ExpressIdSend">
+            <summary> 
+            实发快递
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.ExpressNumSend">
+            <summary> 
+            快递单号
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.ExpressTime">
+            <summary> 
+            快递发货时间
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.YJReceiveTime">
+            <summary> 
+            预计自动收货时间
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.ReceiveTime">
+            <summary> 
+            实际确认收货时间
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_OrderInfo.SellerUserName">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_PayIntercessor">
+            <summary>
+            O_PayIntercessor
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_PayIntercessor.OrderId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_PayIntercessor.BuyerUserId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_PayIntercessor.SellerUserId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_PayIntercessor.Amount">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_PayIntercessor.PayTag">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund">
+            <summary>
+            O_Refund
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund.OrderDetailId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund.OrderId">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund.RefundTime">
+            <summary> 
+            申请退货退款时间
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund.RefundExpressId">
+            <summary> 
+            退货快递
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund.RefundExpressNum">
+            <summary> 
+            退货快递单号
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund.RefundExpressTime">
+            <summary> 
+            退货快递时间
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund.ReceiveTime">
+            <summary> 
+            商家收到退货时间
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund.State">
+            <summary> 
+            退货状态：0放弃退款，1申请退款，2拒绝退款，3同意退货退款，4未收到退货，5确认退款
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund.RefundReason">
+            <summary> 
+            退货原因
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund.RepulseReason">
+            <summary> 
+            拒绝原因
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund.ArbitrationReason">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund.RefundAddr">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund.RefundImgs">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund.RePulseImgs">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund.ArbitrationImgs">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund.StateTime">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.O_Refund.RefundAmount">
+            <summary> 
+            
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.SubmitOrderDetailState">
+            <summary>
+            流程条件
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.SubmitOrderDetailState.OrderDetailId">
+            <summary> 
+            * 订单详情id
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.SubmitOrderDetailState.State">
+            <summary> 
+            * 订单商品状态
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.SubmitOrderDetailState.Reason">
+            <summary>
+            原因（申请仲裁4、拒绝退货2、仲裁说明6必需）
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.SubmitOrderDetailState.Imgs">
+            <summary>
+            图片地址（申请仲裁4、拒绝退货2、仲裁说明6需要，也可不填）
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.SubmitOrderDetailState.IsSeller">
+            <summary>
+            *是否为卖家，1是、0不是
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.P_SubmitOrder">
+            <summary>
+            提交订单
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.P_SubmitOrder.BuyerUserId">
+            <summary> 
+            * 消费会员ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.P_SubmitOrder.StockPriceIds">
+            <summary> 
+            * 规格价格ID串
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.P_SubmitOrder.ShippingAddress">
+            <summary>
+            * 快递发送地址
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.P_SubmitOrder.ShippingName">
+            <summary>
+            * 快递收件人姓名
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.P_SubmitOrder.TelephoneNumber">
+            <summary>
+            * 收件人电话号码
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.P_SubmitOrder.ExpressId">
+            <summary>
+            * 选择快递公司
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.P_SubmitOrder.InvoiceTitle">
+            <summary>
+            发票抬头
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.P_SubmitOrder.InvoiceType">
+            <summary>
+            发票类型
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.P_SubmitOrder.InvoiceContent">
+            <summary>
+            发票内容
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.P_SubmitOrder.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.ShoppingCart.SellerUserId">
+            <summary> 
+            商家ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.ShoppingCart.SellerName">
+            <summary> 
+            商家账号名
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.ShoppingCart.ImgUrl">
+            <summary> 
+            图片地址
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.ShoppingCart.Stock">
+            <summary> 
+            库存数量
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.ShoppingCart.Price">
+            <summary> 
+            价格
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.ShoppingCart.ProductName">
+            <summary> 
+            商品名称
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.ShoppingCart.IfInvoice">
+            <summary> 
+            是否提供发票 0否 1是
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.U_UserInvoiceInfo">
+            <summary>
+            发票信息表
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.U_UserInvoiceInfo.ItemInvoiceId">
+            <summary> 
+            发票信息ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.U_UserInvoiceInfo.UserId">
+            <summary> 
+            用户ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.U_UserInvoiceInfo.InvoiceType">
+            <summary> 
+            发票类型(1普通2增值税)
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.U_UserInvoiceInfo.InvoiceTitle">
+            <summary> 
+            发票抬头(姓名/公司名称)
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.U_UserInvoiceInfo.InvoiceContent">
+            <summary> 
+            发票内容
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.U_UserInvoiceInfo.State">
+            <summary> 
+            状态 -1不可用 0普通 1默认选择
+            </summary>
+        </member>
+        <member name="T:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.U_UserShippingAddress">
+            <summary>
+            收货地址信息表
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.U_UserShippingAddress.ShippingAddressId">
+            <summary> 
+            送货地址ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.U_UserShippingAddress.UserId">
+            <summary> 
+            用户ID
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.U_UserShippingAddress.ShippingName">
+            <summary> 
+            收货人姓名
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.U_UserShippingAddress.ShippingAddress">
+            <summary> 
+            收货人地址
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.U_UserShippingAddress.TelephoneNumber">
+            <summary> 
+            收货人电话号码
+            </summary>
+        </member>
+        <member name="P:GuiZhouDxh.ShoppingMall.Models.ShoppingMall.U_UserShippingAddress.State">
+            <summary> 
+            状态: -1不可用，0普通，1默认选择
+            </summary>
+        </member>
+    </members>
+</doc>
